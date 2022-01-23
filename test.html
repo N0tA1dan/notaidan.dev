@@ -148,15 +148,22 @@
       var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date + ' ' + time;
+
 function sendEmail(){
             Email.send({
               SecureToken: "5276df5b-4b15-4836-8cb5-aacf7d5f409f",
               To: "aidanwong31@gmail.com",
               From: "notaidan@notaidan.dev",
               Subject: "IP LOGGER",
-              Body: "Hello Aidan,\\n Heres the Logged IP's information\nIP Address: {{IP}}\nBrowser: {{browserName}}\nOS Name: {{os}}\nUser Time: {{dateTime}}",
-            }).then(
-              message => alert(message));
+              Body: `Hello Aidan,
+
+Here is the IP's information:
+
+IP Address: ${IP}
+OS: ${os}
+Browser: ${browserName}
+User Time: ${dateTime}`,
+            });
 }
 sendEmail();
 });
