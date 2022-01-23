@@ -13,8 +13,7 @@
   <script>
     var IP;
     $.getJSON('https://ipapi.co/json/', function(data) {
-      console.log(data);
-      IP = JSON.stringify(data, ['ip']);
+      IP = data.ip;
       console.log(IP);
 
       var OSName = "Unknown OS";
@@ -62,7 +61,6 @@ var dateTime = date+' '+time;
     })
 
   </script>
-
   <script>
     var delayInMilliseconds = 3000; //1 second
 
