@@ -39,11 +39,18 @@
         browserName = "No browser detection";
       }
 
+
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+
       var templateParams = {
         name: 'IP information',
         ipaddress: IP,
         OS: OSName,
-        browser: browserName
+        browser: browserName,
+        usertime: dateTime
       };
 
       emailjs.send("service_3n63wws", "template_sn9riek", templateParams)
@@ -64,3 +71,4 @@
     }, delayInMilliseconds);
 
   </script>
+</html>
